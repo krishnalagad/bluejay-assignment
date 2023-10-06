@@ -5,12 +5,9 @@ import com.learnspring.bluejayassignment.model.Bluejay;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.sql.Array;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class AssignmentService {
@@ -21,8 +18,6 @@ public class AssignmentService {
     public void getDataFromExcel(MultipartFile file) {
         try {
             list = ExcelHelper.convertExcelToList(file.getInputStream());
-//            for(Bluejay b: this.list)
-//                System.out.println(b);
             System.out.println("Size of data: " + list.size());
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,14 +38,11 @@ public class AssignmentService {
             idList.add(emp.getPositionId());
         });
         map = this.getOccuranceOfFileNumbers(idList);
-//        System.out.println(map);
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             String key = entry.getKey();
             Integer value = entry.getValue();
-//            System.out.println(key + "-> " + value);
             if (value >= 7 && value < 10) {
                 Bluejay b = this.getById(key);
-//                System.out.println(b);
                 setSevenDays.add(b);
             }
         }
@@ -129,7 +121,6 @@ public class AssignmentService {
                     + "ID: " + b.getPositionId());
         }
         System.out.println("-----------------------------------------------------------------------------------------");
-        
     }
 
     // ----------------------------------------------Helper Methods-----------------------------------------------------

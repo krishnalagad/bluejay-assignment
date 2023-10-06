@@ -1,0 +1,59 @@
+ .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.4)
+
+2023-10-06T17:34:03.877+05:30  INFO 6168 --- [           main] c.l.b.BluejayAssignmentApplication       : Starting BluejayAssignmentApplication using Java 21 with PID 6168 (D:\Installed Software\Github Desktop\bluejay-assignment\target\classes started by krish in D:\Installed Software\Github Desktop\bluejay-assignment)
+2023-10-06T17:34:03.881+05:30  INFO 6168 --- [           main] c.l.b.BluejayAssignmentApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-10-06T17:34:04.895+05:30  INFO 6168 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2023-10-06T17:34:04.903+05:30  INFO 6168 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-06T17:34:04.903+05:30  INFO 6168 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
+2023-10-06T17:34:05.022+05:30  INFO 6168 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-06T17:34:05.026+05:30  INFO 6168 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1068 ms
+2023-10-06T17:34:05.446+05:30  INFO 6168 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2023-10-06T17:34:05.456+05:30  INFO 6168 --- [           main] c.l.b.BluejayAssignmentApplication       : Started BluejayAssignmentApplication in 1.978 seconds (process running for 2.4)
+2023-10-06T17:34:07.743+05:30  INFO 6168 --- [nio-8081-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-06T17:34:07.743+05:30  INFO 6168 --- [nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-06T17:34:07.744+05:30  INFO 6168 --- [nio-8081-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Size of data: 1484
+
+-----------------------------------------------------------------------------------------
+name and position of an employee who has worked for seven consecutive days
+
+Name: CeWdEza, Erik    Position: Active    ID: WFS000465
+Name: CaraGiXXa, AWMhEWy    Position: Active    ID: WFS000514
+Name: ArrAMia, AXexis ArMArE    Position: Active    ID: WFS000518
+Name: FaGiaW CiraWda, JEse    Position: Active    ID: WFS000530
+Name: HAWMer, ViWceWM De PaAX    Position: Active    ID: WFS000538
+Name: CiGriaW DeXgadE, EXeWa S    Position: Active    ID: WFS000574
+-----------------------------------------------------------------------------------------
+name and position of an employee who has worked for more than 14 hours in a shift
+
+Name: DeXgadiXXE REdarMe, ChrisMiaW S    Position: Active    ID: WFS000523
+-----------------------------------------------------------------------------------------
+name and position of an employee who who have less than 10 hours of time between shifts but greater than 1 hour
+
+Name: CaMaXaWE, CeghaW    Position: Active    ID: WFS000153
+Name: CaMaXaWE, CeghaW    Position: Active    ID: WFS000153
+Name: Xee, XaCar    Position: Active    ID: WFS000200
+Name: Xee, XaCar    Position: Active    ID: WFS000200
+Name: Xee, XaCar    Position: Active    ID: WFS000200
+Name: Xee, XaCar    Position: Active    ID: WFS000200
+Name: Xee, XaCar    Position: Active    ID: WFS000200
+Name: Xee, XaCar    Position: Active    ID: WFS000200
+Name: De Xa Cerda, IgWaciE    Position: Active    ID: WFS000318
+Name: De Xa Cerda, IgWaciE    Position: Active    ID: WFS000318
+Name: MraW, WiXXiaC Ha    Position: Active    ID: WFS000345
+Name: MraW, WiXXiaC Ha    Position: Active    ID: WFS000345
+Name: MraW, WiXXiaC Ha    Position: Active    ID: WFS000345
+Name: MraW, WiXXiaC Ha    Position: Active    ID: WFS000345
+Name: CEreira Jr, JEse    Position: Active    ID: WFS000456
+Name: CEreira Jr, JEse    Position: Active    ID: WFS000456
+Name: DeXgadiXXE REdarMe, ChrisMiaW S    Position: Active    ID: WFS000523
+Name: DeXgadiXXE REdarMe, ChrisMiaW S    Position: Active    ID: WFS000523
+Name: HaCiXMEW, DeaWMe DevEW    Position: Active    ID: WFS000536
+Name: HaCiXMEW, DeaWMe DevEW    Position: Active    ID: WFS000536
+-----------------------------------------------------------------------------------------
