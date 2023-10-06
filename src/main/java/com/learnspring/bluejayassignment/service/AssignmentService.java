@@ -5,6 +5,8 @@ import com.learnspring.bluejayassignment.model.Bluejay;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.Array;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 public class AssignmentService {
 
     List<Bluejay> list = null;
+    Map<String, Integer> map = new LinkedHashMap<>();
 
     public void getDataFromExcel(MultipartFile file) {
         try {
@@ -39,7 +42,7 @@ public class AssignmentService {
         this.list.forEach(emp -> {
             idList.add(emp.getPositionId());
         });
-        Map<String, Integer> map = this.getOccuranceOfFileNumbers(idList);
+        map = this.getOccuranceOfFileNumbers(idList);
 //        System.out.println(map);
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             String key = entry.getKey();
@@ -52,32 +55,84 @@ public class AssignmentService {
             }
         }
         System.out.println();
-        for (Bluejay b: setSevenDays) {
-            System.out.println("Name: " + b.getEmployeeName() + "    " + "Position: " + b.getPositionStatus());
+        for (Bluejay b : setSevenDays) {
+            System.out.println("Name: " + b.getEmployeeName() + "    " + "Position: " + b.getPositionStatus() + "    "
+                    + "ID: " + b.getPositionId());
         }
         System.out.println("-----------------------------------------------------------------------------------------");
     }
 
     public void getEmployeeWith14Hours() {
         Set<Bluejay> setFourteenHours = new LinkedHashSet<>();
-        for (Bluejay b: this.list) {
+        for (Bluejay b : this.list) {
             if (!b.getTime().isEmpty() && !b.getTimeOut().isEmpty()) {
                 double time = Double.parseDouble(b.getTime());
                 double timeOut = Double.parseDouble(b.getTimeOut());
                 String startTime = AssignmentService.parseExcelDateTime(time);
                 String endTime = AssignmentService.parseExcelDateTime(timeOut);
                 boolean hours = AssignmentService.isTimeDifferenceGreaterThan14Hours(startTime, endTime);
-                if (hours){
+                if (hours) {
                     setFourteenHours.add(b);
                 }
             }
         }
         System.out.println();
-        for (Bluejay b: setFourteenHours) {
-            System.out.println("Name: " + b.getEmployeeName() + "    " + "Position: " + b.getPositionStatus());
+        for (Bluejay b : setFourteenHours) {
+            System.out.println("Name: " + b.getEmployeeName() + "    " + "Position: " + b.getPositionStatus() + "    "
+                    + "ID: " + b.getPositionId());
         }
         System.out.println("-----------------------------------------------------------------------------------------");
     }
+
+    public void getEmployeeNameWithShift() {
+        List<List<Bluejay>> l = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : this.map.entrySet()) {
+            int value = entry.getValue();
+            String key = entry.getKey();
+            if (value > 1) {
+                List<Bluejay> raw = new ArrayList<>();
+                for (Bluejay b : this.list) {
+                    if (key.equals(b.getPositionId())) {
+                        raw.add(b);
+                    }
+                }
+                l.add(raw);
+            }
+        }
+
+        List<Bluejay> filteredShifts = new ArrayList<>();
+        for (int i = 0; i < l.size(); i++) {
+            List<Bluejay> bluejays = l.get(i);
+            for (int j = 1; j < bluejays.size(); j++) {
+                Bluejay currentShift = bluejays.get(j - 1);
+                Bluejay nextShift = bluejays.get(j);
+                if (!currentShift.getTimeOut().isEmpty() && !nextShift.getTime().isEmpty()) {
+                    double currentTime = Double.parseDouble(currentShift.getTimeOut());
+                    double nextTime = Double.parseDouble(nextShift.getTime());
+                    String currentTimeShift = AssignmentService.parseExcelDateTime(currentTime);
+                    String nextTimeShift = AssignmentService.parseExcelDateTime(nextTime);
+
+                    long hoursDiff = AssignmentService
+                            .isTimeDifferenceGreaterThan1HourAndLessThan10Hours(currentTimeShift, nextTimeShift);
+
+                    if (hoursDiff > 1 && hoursDiff < 10) {
+                        filteredShifts.add(bluejays.get(j-1));
+                        filteredShifts.add(bluejays.get(j));
+                    }
+                }
+            }
+        }
+
+        System.out.println();
+        for (Bluejay b : filteredShifts) {
+            System.out.println("Name: " + b.getEmployeeName() + "    " + "Position: " + b.getPositionStatus() + "    "
+                    + "ID: " + b.getPositionId());
+        }
+        System.out.println("-----------------------------------------------------------------------------------------");
+        
+    }
+
+    // ----------------------------------------------Helper Methods-----------------------------------------------------
 
     private Map<String, Integer> getOccuranceOfFileNumbers(List<String> list) {
         Map<String, Integer> map = new LinkedHashMap<>();
@@ -115,6 +170,17 @@ public class AssignmentService {
         long hoursDifference = java.time.Duration.between(startDateTime, endDateTime).toHours();
 
         return hoursDifference > 14;
+    }
+
+    private static long isTimeDifferenceGreaterThan1HourAndLessThan10Hours(String startTime, String endTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss a");
+        LocalDateTime timeOut = LocalDateTime.parse(startTime, formatter);
+        LocalDateTime time = LocalDateTime.parse(endTime, formatter);
+
+        // Calculate the difference in hours
+        long hoursDifference = java.time.Duration.between(timeOut, time).toHours();
+
+        return hoursDifference;
     }
 
     public static String parseExcelDateTime(double excelDate) {

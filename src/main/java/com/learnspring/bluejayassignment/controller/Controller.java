@@ -19,7 +19,7 @@ public class Controller {
     private AssignmentService assignmentService;
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadData(@RequestParam("file")MultipartFile file) {
+    public ResponseEntity<?> uploadData(@RequestParam("file") MultipartFile file) {
         if (ExcelHelper.checkFileType(file)) {
             // method to extract data from excel file
             this.assignmentService.getDataFromExcel(file);
@@ -34,6 +34,10 @@ public class Controller {
             // method to get name and position of an employee who has worked for more than 14 hours in a shift.
             System.out.println("name and position of an employee who has worked for more than 14 hours in a shift");
             this.assignmentService.getEmployeeWith14Hours();
+
+            // method to get name and position of an employee who who have less than 10 hours of time between shifts but greater than 1 hour.
+            System.out.println("name and position of an employee who who have less than 10 hours of time between shifts but greater than 1 hour");
+            this.assignmentService.getEmployeeNameWithShift();
 
             return ResponseEntity.ok("Data Uplaoded.");
         }
