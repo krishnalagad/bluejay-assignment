@@ -57,7 +57,7 @@ public class AssignmentService {
     public void getEmployeeWith14Hours() {
         Set<Bluejay> setFourteenHours = new LinkedHashSet<>();
         for (Bluejay b : this.list) {
-            if (!b.getTime().isEmpty() && !b.getTimeOut().isEmpty()) {
+            if (b.getTime() != null && !b.getTime().isEmpty() && b.getTimeOut() != null && !b.getTimeOut().isEmpty()) {
                 double time = Double.parseDouble(b.getTime());
                 double timeOut = Double.parseDouble(b.getTimeOut());
                 String startTime = AssignmentService.parseExcelDateTime(time);
@@ -98,7 +98,8 @@ public class AssignmentService {
             for (int j = 1; j < bluejays.size(); j++) {
                 Bluejay currentShift = bluejays.get(j - 1);
                 Bluejay nextShift = bluejays.get(j);
-                if (!currentShift.getTimeOut().isEmpty() && !nextShift.getTime().isEmpty()) {
+                if (currentShift.getTimeOut() != null && !currentShift.getTimeOut().isEmpty() &&
+                        nextShift.getTime() != null && !nextShift.getTime().isEmpty()) {
                     double currentTime = Double.parseDouble(currentShift.getTimeOut());
                     double nextTime = Double.parseDouble(nextShift.getTime());
                     String currentTimeShift = AssignmentService.parseExcelDateTime(currentTime);
