@@ -35,8 +35,8 @@ public class Controller {
             System.out.println("name and position of an employee who has worked for more than 14 hours in a shift");
             this.assignmentService.getEmployeeWith14Hours();
 
-            // method to get name and position of an employee who who have less than 10 hours of time between shifts but greater than 1 hour.
-            System.out.println("name and position of an employee who who have less than 10 hours of time between shifts but greater than 1 hour");
+            // method to get name and position of an employee who have less than 10 hours of time between shifts but greater than 1 hour.
+            System.out.println("name and position of an employee who have less than 10 hours of time between shifts but greater than 1 hour");
             this.assignmentService.getEmployeeNameWithShift();
 
             return ResponseEntity.ok("Data Uplaoded.");
